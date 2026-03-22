@@ -1,0 +1,84 @@
+{
+  "name": "mapflow-co-sdk",
+  "version": "1.0.0",
+  "description": "Official Node.js & TypeScript SDK for MapFlow — Route Optimization, Delivery Management & Logistics API. Manage customers, warehouses, drivers, vehicles, visits and product catalog from your JS/TS applications.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:crud": "npx ts-node test-full-crud.ts",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mapflow",
+    "route-optimization",
+    "delivery-management",
+    "logistics",
+    "fleet-management",
+    "delivery",
+    "route-planning",
+    "api",
+    "sdk",
+    "typescript",
+    "last-mile",
+    "last-mile-delivery",
+    "vrp",
+    "vehicle-routing",
+    "tour-optimization",
+    "dispatching",
+    "warehouse",
+    "driver-management",
+    "visit-scheduling",
+    "delivery-api",
+    "logistics-api",
+    "mapflow-co"
+  ],
+  "author": "MapFlow <support@mapflow.co> (https://mapflow.co)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mapflow-co/node-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mapflow-co/node-sdk/issues"
+  },
+  "homepage": "https://mapflow.co",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.19.25",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "eslint": "^8.50.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ]
+}

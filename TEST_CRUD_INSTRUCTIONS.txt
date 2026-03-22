@@ -1,0 +1,178 @@
+================================================================================
+              INSTRUCTIONS POUR LE TEST CRUD COMPLET - SDK MAPFLOW
+================================================================================
+
+Ce fichier explique comment utiliser le script de test CRUD complet pour
+valider toutes les opérations du SDK MapFlow Node.js.
+
+--------------------------------------------------------------------------------
+PRÉREQUIS
+--------------------------------------------------------------------------------
+
+1. Node.js >= 16.0.0
+2. Dépendances installées: npm install
+3. Une clé API MapFlow valide
+4. Un serveur API MapFlow accessible (par défaut: http://localhost:8000)
+
+--------------------------------------------------------------------------------
+MÉTHODES D'EXÉCUTION
+--------------------------------------------------------------------------------
+
+Méthode 1: Avec ts-node (recommandé pour le développement)
+-----------------------------------------------------------
+
+npm run test:crud -- --api-key YOUR_API_KEY
+
+ou directement:
+
+npx ts-node test-full-crud.ts --api-key YOUR_API_KEY
+
+Méthode 2: Avec Node.js (après compilation)
+-------------------------------------------
+
+npm run build
+node dist/test-full-crud.js --api-key YOUR_API_KEY
+
+Méthode 3: Installation globale de ts-node (optionnel)
+-------------------------------------------------------
+
+npm install -g ts-node
+ts-node test-full-crud.ts --api-key YOUR_API_KEY
+
+--------------------------------------------------------------------------------
+OPTIONS DE LIGNE DE COMMANDE
+--------------------------------------------------------------------------------
+
+--api-key <KEY>     (REQUIS) Votre clé API MapFlow
+--base-url <URL>    (Optionnel) URL de base de l'API (défaut: http://localhost:8000)
+--verbose           (Optionnel) Active le mode verbeux pour plus de détails
+--no-cleanup        (Optionnel) Ne supprime pas les ressources créées après les tests
+
+Exemples:
+
+1. Test basique avec API locale:
+   npm run test:crud -- --api-key sk_test_abc123
+
+2. Test avec API de production:
+   npm run test:crud -- --api-key sk_live_xyz789 --base-url https://api.mapflow.co
+
+3. Test en mode verbeux sans nettoyage:
+   npm run test:crud -- --api-key sk_test_abc123 --verbose --no-cleanup
+
+--------------------------------------------------------------------------------
+QUE TESTE CE SCRIPT ?
+--------------------------------------------------------------------------------
+
+Le script teste toutes les opérations CRUD pour les entités suivantes:
+
+1.  GlobalCustomer    - Création d'un customer avec location, contact et horaires
+2.  Customer          - Opérations CREATE, READ, UPDATE (PUT/PATCH), DELETE, LIST, BULK
+3.  DeliveryLocation  - Opérations CREATE, READ, UPDATE (PUT/PATCH), DELETE, LIST, BULK
+4.  Warehouse         - Opérations CREATE, READ, UPDATE (PUT/PATCH), DELETE, LIST, SET_DEFAULT, BULK
+5.  Contact           - Opérations CREATE, READ, UPDATE (PUT/PATCH), DELETE, LIST
+6.  OpeningHours      - Opérations CREATE, READ, UPDATE (PUT/PATCH), DELETE, LIST
+7.  DeliveryItem      - Opérations CREATE, READ, UPDATE (PUT/PATCH), DELETE, LIST
+8.  Driver/Picker     - Opérations CREATE, READ, UPDATE (PUT/PATCH), DELETE, LIST
+9.  Vehicle           - Opérations CREATE, READ, UPDATE (PUT/PATCH), DELETE, LIST, BULK
+10. Tag               - Opérations CREATE, READ, UPDATE (PUT/PATCH), DELETE, LIST
+11. Visit             - Opérations CREATE, READ, UPDATE (PUT/PATCH), DELETE, LIST, BULK
+12. VisitProduct      - Opérations CREATE, READ, UPDATE (PUT/PATCH), DELETE, LIST, BULK
+
+--------------------------------------------------------------------------------
+RÉSULTATS ATTENDUS
+--------------------------------------------------------------------------------
+
+Le script affiche:
+- Un titre de section pour chaque entité testée
+- Un sous-titre pour chaque opération
+- Une coche verte (✓) pour les tests réussis
+- Une croix rouge (✗) pour les tests échoués avec le message d'erreur
+- Un résumé final avec le nombre de tests réussis/échoués
+
+Le script retourne:
+- Code de sortie 0 si tous les tests ont réussi
+- Code de sortie 1 si au moins un test a échoué
+
+--------------------------------------------------------------------------------
+NETTOYAGE DES RESSOURCES
+--------------------------------------------------------------------------------
+
+Par défaut, le script supprime toutes les ressources créées dans l'ordre
+inverse des dépendances. Pour conserver les ressources après les tests,
+utilisez l'option --no-cleanup:
+
+npm run test:crud -- --api-key YOUR_API_KEY --no-cleanup
+
+Les IDs des ressources créées seront affichés à la fin du test.
+
+--------------------------------------------------------------------------------
+DÉPANNAGE
+--------------------------------------------------------------------------------
+
+Erreur: "Cannot find module"
+-----------------------------
+Assurez-vous d'avoir installé les dépendances:
+npm install
+
+Erreur: "Authentication failed"
+--------------------------------
+Vérifiez que votre clé API est valide et active.
+
+Erreur: "Connection refused"
+-----------------------------
+Vérifiez que le serveur API est accessible à l'URL spécifiée.
+
+Erreur: "Permission denied"
+---------------------------
+Rendez le fichier exécutable:
+chmod +x test-full-crud.ts
+
+--------------------------------------------------------------------------------
+STRUCTURE DU SCRIPT
+--------------------------------------------------------------------------------
+
+Le script suit la même structure que le script Python de référence:
+
+1. Classes utilitaires (Colors, TestResults)
+2. Fonctions de test pour chaque entité
+3. Fonction de nettoyage (cleanup)
+4. Fonction principale (main)
+
+Chaque fonction de test:
+- Crée une ressource
+- Lit la ressource créée
+- Met à jour la ressource (PUT et PATCH)
+- Liste les ressources
+- Teste les actions groupées (bulk actions)
+- Enregistre les IDs pour le nettoyage
+
+--------------------------------------------------------------------------------
+NOTES IMPORTANTES
+--------------------------------------------------------------------------------
+
+1. Certaines méthodes ne sont pas encore implémentées dans le SDK Node.js:
+   - getGlobalCustomer, patchGlobalCustomer, listGlobalCustomers
+   - getCustomerLocations
+   - resetDriverPassword
+
+2. Les tests sont marqués comme réussis avec une note "Non implémenté"
+   pour les fonctionnalités manquantes.
+
+3. Les relations entre entités sont respectées (par exemple, une Visit
+   nécessite une DeliveryLocation).
+
+4. Les tests sont exécutés dans un ordre qui respecte les dépendances.
+
+--------------------------------------------------------------------------------
+CONTRIBUTION
+--------------------------------------------------------------------------------
+
+Pour ajouter un nouveau test:
+
+1. Créez une fonction async testXXX(client, results, ...deps)
+2. Suivez le pattern des fonctions existantes
+3. Ajoutez l'appel dans la fonction main()
+4. Ajoutez le nettoyage dans la fonction cleanup()
+
+================================================================================
+
