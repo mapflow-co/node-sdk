@@ -193,13 +193,13 @@ The MapFlow Node.js/TypeScript SDK is **fully implemented and ready for producti
 ### Installation
 
 ```bash
-npm install @mapflow/sdk
+npm install mapflow-co-sdk
 ```
 
 ### Quick Example
 
 ```typescript
-import { MapFlowClient, CustomerType } from '@mapflow/sdk';
+import { MapFlowClient, CustomerType } from 'mapflow-co-sdk';
 
 const client = new MapFlowClient({ apiKey: 'your-key' });
 
@@ -275,7 +275,7 @@ npm run format  # Prettier
 
 ## 📦 Package Details
 
-- **Name**: `@mapflow/sdk`
+- **Name**: `mapflow-co-sdk`
 - **Version**: `1.0.0`
 - **License**: MIT
 - **Main**: `dist/index.js`
@@ -315,8 +315,8 @@ For future enhancements:
 
 - [ ] Add more comprehensive unit tests
 - [ ] Add CI/CD pipeline (GitHub Actions)
-- [ ] Publish to npm registry
-- [ ] Add badge to README
+- [x] Publish to npm registry (`mapflow-co-sdk`)
+- [x] Add badges to README
 - [ ] Create API documentation site
 - [ ] Add more examples (pagination helpers, batch operations)
 - [ ] Add request retry logic
@@ -327,9 +327,11 @@ For future enhancements:
 ## 📧 Support
 
 - **Email**: support@mapflow.co
-- **API Docs**: https://api.mapflow.co/docs
-- **Issues**: https://github.com/mapflow/sdk-node/issues
-- **Discussions**: https://github.com/mapflow/sdk-node/discussions
+- **Website**: https://mapflow.co
+- **API Docs**: https://mapflow.readme.io/reference
+- **npm**: https://www.npmjs.com/package/mapflow-co-sdk
+- **Issues**: https://github.com/mapflow-co/node-sdk/issues
+- **Discussions**: https://github.com/mapflow-co/node-sdk/discussions
 
 ---
 

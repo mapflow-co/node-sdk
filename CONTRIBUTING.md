@@ -7,8 +7,8 @@ Thank you for your interest in contributing to the MapFlow Node.js SDK!
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/mapflow/sdk-node.git
-cd sdk-node
+git clone https://github.com/mapflow-co/node-sdk.git
+cd node-sdk
 ```
 
 2. **Install dependencies**
