@@ -1,6 +1,6 @@
 {
   "name": "mapflow-co-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Official Node.js & TypeScript SDK for MapFlow — Route Optimization, Delivery Management & Logistics API. Manage customers, warehouses, drivers, vehicles, visits and product catalog from your JS/TS applications.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
